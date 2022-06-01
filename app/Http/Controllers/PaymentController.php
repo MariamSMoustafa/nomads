@@ -2,84 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\payment;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function payment1(){
+        return view('auth.payment.payment');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function payment2(Request $request)
     {
-        //
+        $request->validate([
+
+
+
+        ]);
+
+        Payment::create([
+
+            'cardnum' => $request -> cardnum,
+            'cvv' => $request->cvv,
+            'expiration' => $request -> expiration,
+            'card_user_name'=>$request->card_user_name,
+
+
+        ]);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(payment $payment)
-    {
-        //
-    }
 }

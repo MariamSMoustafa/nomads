@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Registeration;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use http\Env\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,7 +57,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'gender'=> ['required','in:male,female'],
+
+           // 'birthday'=>['required','date'],
 
         ]);
     }
@@ -73,8 +76,23 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone'=> $data['phone'],
-            'birthday'=>$data['birthday'],
-            'gender' => $data['gender'],
+            'type'=>$data['type']
+
         ]);
     }
+    protected function ٌRegisteration(Registeration $request){
+
+              $user=   User::create([
+
+             'name' => $request['name'],
+             'email' => $request['email'],
+             'password' => Hash::make($request['password']),
+             'phone'=> $request['phone'],
+                  'type'=>$request['type'],
+
+
+]);
+return response()->json($user,201);
+    }
+
 }

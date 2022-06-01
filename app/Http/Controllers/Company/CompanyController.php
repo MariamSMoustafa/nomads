@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Company;
 use App\Company;
-use Auth;
 
+
+//use App\Http\Requests\companyrequest;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
 {
@@ -16,17 +19,9 @@ class CompanyController extends Controller
     }
     public function storeCompany(Request $request)
     {
-//        $request->validate([
-//            'name' => 'required|string|max:255',
-//            'email' => 'required|string|email|max:255|unique:users',
-//            'gender' => 'required|string|max:255',
-//            'phone' => 'required|string|max:11',
-//            'idNumber' => 'required|string|max:14',
-//            'city' => 'required|string|max:20',
-//            'birthday' =>'required|string|max:20',
-//            'password' => 'required|string|min:8|confirmed',
-//            'password_confirmation' => 'required',
-//        ]);
+       $request->validate([
+
+       ]);
 
         $file_extension2 = $request ->logo -> getClientOriginalExtension();
         $file_name2 = time().'.'.$file_extension2;
@@ -34,10 +29,9 @@ class CompanyController extends Controller
         $request -> logo -> move($path2,$file_name2);
 
         Company::create([
-            'name' => $request->name,
+
             'address' => $request -> address,
-            'email' => $request -> email,
-            'phone' => $request -> phone,
+            'rating' => $request->rating,
             'aboutus' => $request -> aboutus,
             'logo' => $file_name2,
 
@@ -45,5 +39,20 @@ class CompanyController extends Controller
 
         return redirect('home');
     }
+
+   /* public function company(companyrequest  $request)
+    {
+
+        $company=   Company::create([
+
+            'name' => $request['name'] ,
+            'email' => $request['email'],
+            'phone'=> $request['phone'],
+            'logo'=>$request['logo'],
+            'aboutus'=>$request['aboutus'],
+            'address'=>$request['address'] ,
+        ]);
+        return response()->json($company,201);
+    }*/
 
 }

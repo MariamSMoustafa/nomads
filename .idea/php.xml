@@ -107,6 +107,14 @@
       <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/vendor/laravel/cashier-paddle" />
+      <path value="$PROJECT_DIR$/vendor/spatie/macroable" />
+      <path value="$PROJECT_DIR$/vendor/spatie/url" />
+      <path value="$PROJECT_DIR$/vendor/moneyphp/money" />
+      <path value="$PROJECT_DIR$/vendor/overtrue/laravel-follow" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

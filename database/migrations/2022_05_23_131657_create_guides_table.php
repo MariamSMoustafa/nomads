@@ -14,15 +14,17 @@ class CreateGuidesTable extends Migration
     public function up()
     {
         Schema::create('guides', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('phone')->unique();
+            $table->id('Guide_ID');
             $table->date('birthday');
             $table->string('city');
             $table->decimal('price');
             $table->string('gender');
+            $table->string('image');
+            $table->string('rating');
+            $table->foreignId('user_id')
+                ->constrained("users")
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

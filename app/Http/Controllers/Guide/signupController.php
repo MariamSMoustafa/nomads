@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Guide;
 
 use App\guide;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Registeration;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
@@ -18,35 +20,55 @@ class signupController extends Controller
     }
     public function storeUser1(Request $request)
     {
+
+
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+
             'gender' => 'required|string|max:255',
-            'phone' => 'required|string|max:11',
-           // 'idNumber' => 'required|string|max:14',
+            'Guide_ID' => 'required|string|max:16',
             'city' => 'required|string|max:20',
             'birthday' =>'required|string|max:20',
-           // 'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required',
+
         ]);
 
+        $file_extension = $request -> guideimage -> getClientOriginalExtension();
+        $file_name = time().'.'.$file_extension;
+        $path = 'image/guide';
+        $request -> guideimage -> move($path,$file_name);
 
         Guide::create([
-            'name' => $request->name,
-            'email' => $request->email,
+
             'gender' => $request->gender,
-            'phone' => $request->phone,
-            //'idnumber' =>$request->idNumber,
+            'Guide_ID' =>$request->Guide_ID,
             'city'=> $request->city,
             'birthday' =>$request->birthday,
-            'password' => Hash::make($request->password),
             'price'=>$request->price,
+            'image'=>$request->$file_name,
+            'rating'=>$request->rating,
 
         ]);
+
 
         return redirect('register2');
     }
-    public function login()
+    /*protected function GuideRegister(GuideRegister $request){
+
+        $guide=   Guide::create([
+
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => \Illuminate\Support\Facades\Hash::make($request['password']),
+            'phone'=> $request['phone'],
+            'birthday'=>$request['birthday'],
+            'gender' => $request['gender'],
+            'city'=>$request['city'],
+            'price'=>$request['price']
+
+        ]);
+        return response()->json($guide,201);
+    }*/
+  /*  public function login()
     {
 
         return view('auth.login');
@@ -78,5 +100,5 @@ class signupController extends Controller
     public function home()
     {
         return view('home');
-    }
+    }*/
 }

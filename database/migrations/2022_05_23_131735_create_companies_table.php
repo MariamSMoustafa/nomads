@@ -15,12 +15,17 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+
             $table->text('address');
             $table->string('logo');
             $table->text('aboutus');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('rating');
+            $table->foreignId('user_id')
+                ->constrained("users")
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+
 
 
             $table->timestamps();

@@ -62,9 +62,9 @@ return [
             'visibility' => 'public',
             ],
 
-        'Company' => [
+        'CompanyRequest' => [
             'driver' => 'local',
-            'root' => base_path() . 'public/image/Company',
+            'root' => base_path() . 'public/image/CompanyRequest',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],

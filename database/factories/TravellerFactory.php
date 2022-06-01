@@ -2,12 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\traveller;
 use Faker\Generator as Faker;
 
-$factory->define(\App\favorite::class, function (Faker $faker) {
+$factory->define(traveller::class, function (Faker $faker) {
     return [
         //
-
     ];
 });

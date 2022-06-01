@@ -13,7 +13,6 @@ $factory->define(\App\User::class, function (Faker $faker) {
         'email' => $faker->email,
         'password'=>$faker->password,
         'phone'=>$faker->phoneNumber,
-        'birthday'=>$faker->date,
-        'gender'=>$faker->sentence,
+
     ];
 });

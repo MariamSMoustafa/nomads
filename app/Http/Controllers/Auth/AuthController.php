@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -30,19 +30,25 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone'=> $request->phone,
-            'birthday'=>$request->birthday,
-            'gender'=>$request->gender,
+
         ]);
 
         return redirect('home');
     }
 
-    public function login()
+    public function Login(Request $request)
     {
-
-        return view('auth.login');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            error_log('iam here');
+            $user = User::where('email', $request->email)->first(); // get user
+            $user = Auth::loginUsingId($user->id);
+            $token = $user->createToken('myapptoken')->plainTextToken;
+            $response = ['user' => $user, 'token' => $token];
+            return $response;
+        }
+        return response()->json(["message" => "The user was not found or the password was incorrect."], 401);
     }
-
     public function authenticate(Request $request)
     {
         $request->validate([
@@ -53,18 +59,17 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
+
         }
 
         return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
     }
 
-    public function logout() {
-        Auth::logout();
-
-        return redirect('login');
+    public function logout(Request $request)
+    {
+        auth()->user()->tokens()->delete();
+        return response()->json(["message" => "Logout Sucessfully"], 200);
     }
-
     public function home()
     {
         return view('home');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class CreateTravellersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,20 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id('');
 
-            $table->string('cvv') ;
-            $table->string('cardnum') ;
-            $table->date('expiration') ;
-            $table->string('card_user_name') ;
+        Schema::create('travellers', function (Blueprint $table) {
+            $table->id('Traveller_ID');
+            $table->timestamps();
+            $table->date('birthday');
+            $table->string('image');
+            $table->string('gender');
             $table->foreignId('user_id')
                 ->constrained("users")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
-    }
 
+    }
     /**
      * Reverse the migrations.
      *
@@ -35,6 +34,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('travellers');
     }
 }

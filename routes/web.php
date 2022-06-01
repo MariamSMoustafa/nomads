@@ -1,7 +1,11 @@
 <?php
 
-use App\User;
+
 use Illuminate\Support\Facades\Route;
+use App\User;
+use App\Http\Controllers\SearchController;
+use Symfony\Component\Console\Input\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +40,13 @@ Route::post('/register2', 'Guide\langcerController@storeUser2');
 
 Route::get('/addCompany', 'Company\CompanyController@addCompany')->name('addCompany');
 Route::post('/addCompany', 'Company\CompanyController@storeCompany');
+
+Route::post('/results', 'CompanyRequest\CompanyController@storeCompany');
+Route::get('/results', function () {
+    return view('welcome');
+});
+
+Route::get('/payment', 'PaymentController@payment1')->name('payment');
+Route::post('/payment', 'PaymentController@payment2');
+
 

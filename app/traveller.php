@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Company extends Model
+class traveller extends Model
 {
     //
     use HasApiTokens;
@@ -14,7 +14,7 @@ class Company extends Model
 
     protected $table = "companies";
     protected $fillable = [
-     'address','aboutus','logo','rating',
+        'birthday','image','gender','Traveller_ID'
     ];
     protected $casts = [
         'email_verified_at' => 'datetime',

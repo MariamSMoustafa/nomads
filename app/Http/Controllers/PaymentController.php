@@ -17,19 +17,35 @@ class PaymentController extends Controller
         $request->validate([
 
 
-
         ]);
 
         Payment::create([
 
-            'cardnum' => $request -> cardnum,
+            'cardnum' => $request->cardnum,
             'cvv' => $request->cvv,
-            'expiration' => $request -> expiration,
-            'card_user_name'=>$request->card_user_name,
+            'expiration' => $request->expiration,
+            'card_user_name' => $request->card_user_name,
 
 
         ]);
-
     }
+        protected function pay(Request $request){
+
+        $payment=   Payment::create([
+
+            'cvv' => $request['cvv'],
+            'cardnum' => $request['cardnum'],
+            'expiration'=> $request['expiration'],
+            'card_user_name'=> $request['card_user_name'],
+            'traveller_id'=> $request['traveller_id'],
+
+
+
+
+        ]);
+        return response()->json($payment,201);
+    }
+
+
 
 }

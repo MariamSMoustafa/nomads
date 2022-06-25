@@ -18,7 +18,7 @@ class LanguageCertificate extends Model
      */
     protected $table = "certificates-languages";
     protected $fillable = [
-        'language_name','certificate_img',
+        'language_name','certificate_img','guide_id'
     ];
 
     /**

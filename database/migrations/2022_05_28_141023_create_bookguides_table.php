@@ -16,8 +16,8 @@ class CreateBookguidesTable extends Migration
         Schema::create('bookguides', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')
-                ->constrained("users")
+            $table->foreignId('travellers_id')
+                ->constrained("travellers")
                 ->onUpdate('cascade')
                 ->onDelete('cascade')
                 ->nullable();
@@ -31,7 +31,7 @@ class CreateBookguidesTable extends Migration
             $table->string('phone_num2');
             $table->string('from');
             $table->string('to');
-            $table->string('num_of_seats');
+            $table->string('num_of_days');
             $table->text('message');
 
 

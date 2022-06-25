@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\traveller;
 use Illuminate\Http\Request;
 
+
+
 class TravellerController extends Controller
 {
     /**
@@ -21,9 +23,7 @@ class TravellerController extends Controller
         $request->validate([
 
             'gender' => 'required|string|max:255',
-            'phone' => 'required|string|max:11',
             'Traveller_ID' => 'required|string|max:16',
-            'city' => 'required|string|max:20',
             'birthday' => 'required|string|max:20',
 
         ]);
@@ -39,14 +39,24 @@ class TravellerController extends Controller
             'Traveller_ID' =>$request->Guide_ID,
             'birthday' =>$request->birthday,
             'image'=>$request->$file_name,
-
-
-
         ]);
 
-
-
     }
+    protected function trav(Request $request){
+
+        $traveller=   traveller::create([
+
+            'birthday' => $request['birthday'],
+            'image' => $request['image'],
+            'gender'=> $request['gender'],
+            'user_id'=> $request['user_id'],
+
+        ]);
+        return response()->json($traveller,201);
+    }
+
+
+
     public function index()
     {
         //

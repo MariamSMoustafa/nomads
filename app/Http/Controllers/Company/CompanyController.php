@@ -40,19 +40,19 @@ class CompanyController extends Controller
         return redirect('home');
     }
 
-   /* public function company(companyrequest  $request)
+    public function comp(Request  $request)
     {
 
-        $company=   Company::create([
+        $comp=   Company::create([
 
-            'name' => $request['name'] ,
-            'email' => $request['email'],
-            'phone'=> $request['phone'],
+
             'logo'=>$request['logo'],
             'aboutus'=>$request['aboutus'],
             'address'=>$request['address'] ,
+            'rating'=>$request['rating'] ,
+            'user_id'=>$request['user_id']
         ]);
-        return response()->json($company,201);
-    }*/
+        return response()->json($comp,201);
+    }
 
 }

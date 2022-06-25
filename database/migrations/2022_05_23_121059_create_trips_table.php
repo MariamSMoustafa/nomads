@@ -18,11 +18,21 @@ class CreateTripsTable extends Migration
             $table->string('tripname');
             $table->text('description');
             $table->string('nofpeople');
-            $table->date('duration');
+            $table->time('duration');
             $table->decimal('price');
-
+            $table->date('from');
+            $table->date('to');
+            $table->string('guideLines');
+            $table->string('photos');
+            $table->time('departureTime');
+            $table->string('departurePlace');
             $table->foreignId('company_id')
                 ->constrained("companies")
+                ->onUpdate('cascade')
+                ->onDelete('cascade')
+                ->nullable();
+            $table->foreignId('city_id')
+                ->constrained("cities")
                 ->onUpdate('cascade')
                 ->onDelete('cascade')
                 ->nullable();

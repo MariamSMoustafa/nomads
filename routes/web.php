@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Http\Controllers\SearchController;
@@ -17,6 +18,9 @@ use Symfony\Component\Console\Input\Input;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,4 +53,25 @@ Route::get('/results', function () {
 Route::get('/payment', 'PaymentController@payment1')->name('payment');
 Route::post('/payment', 'PaymentController@payment2');
 
+//trip
+Route::get('/addTrip', 'TripController@addTrip')->name('addTrip');
+Route::post('/addTrip', 'TripController@storeTrip');
 
+
+//bookTrip
+Route::get('/tripBooking', 'BookingController@tripBooking')->name('tripBooking');
+Route::post('/tripBooking', 'BookingController@storeBookTrip');
+
+//bookGuide
+Route::get('/guideBooking', 'BookguideController@guideBooking')->name('guideBooking');
+Route::post('/guideBooking', 'BookguideController@storeBookGuide');
+
+//reviews for guide
+Route::get('/guideReviews', 'guideReviewController@guideReview')->name('guideReviews');
+Route::post('/guideReviews', 'guideReviewController@storeGuideReview');
+
+//reviews for company
+Route::get('/companyReviews', 'companyReviewController@companyReview')->name('companyReviews');
+Route::post('/companyReviews', 'companyReviewController@storeCompanyReview');
+
+Route::get('/add',"TravellerController@insertRecord");

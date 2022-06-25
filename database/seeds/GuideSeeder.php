@@ -12,7 +12,7 @@ class GuideSeeder extends Seeder
     public function run()
     {
         //
-        factory(\App\Guide::class, 50)->create();
+        factory(\App\Guide::class, 25)->create();
 
     }
 }

@@ -20,7 +20,6 @@ class CreateGuidesTable extends Migration
             $table->decimal('price');
             $table->string('gender');
             $table->string('image');
-            $table->string('rating');
             $table->foreignId('user_id')
                 ->constrained("users")
                 ->onUpdate('cascade')

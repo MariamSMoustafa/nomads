@@ -46,4 +46,18 @@ class langcerController extends Controller
         return redirect('home');
     }
 
+    protected function langcer(Request $request){
+
+        $langcer=   LanguageCertificate::create([
+
+            'language_name' => $request['language_name'],
+            'certificate_img' => $request['certificate_img'],
+            'guide_id'=> $request['guide_id'],
+
+        ]);
+        return response()->json($langcer,201);
+    }
+
+
+
 }

@@ -15,14 +15,16 @@ class CreateGuideReviewsTable extends Migration
     {
         //
         Schema::create('guide-reviews', function (Blueprint $table) {
-            $table->text('Review');
+            $table->id();
+            $table->text('review');
+            $table->float('rating');
             $table->timestamps();
-            $table->foreignId('user_id')
-                ->constrained("users")
+            $table->foreignId('traveller_id')
+                ->constrained("travellers")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('guide_id')
-                ->constrained("users")
+                ->constrained("guides")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

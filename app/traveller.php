@@ -12,11 +12,12 @@ class traveller extends Model
     use HasApiTokens;
     use Notifiable;
 
-    protected $table = "companies";
+    protected $table = "travellers";
     protected $fillable = [
-        'birthday','image','gender','Traveller_ID'
+        'birthday','image','gender','user_id'
     ];
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

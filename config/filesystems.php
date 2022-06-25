@@ -62,12 +62,21 @@ return [
             'visibility' => 'public',
             ],
 
-        'CompanyRequest' => [
+
+        'Company' => [
             'driver' => 'local',
-            'root' => base_path() . 'public/image/CompanyRequest',
+            'root' => base_path() . 'public/image/Company',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+
+        'Trip' => [
+            'driver' => 'local',
+            'root' => base_path() . 'public/image/Trip',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+
 
         's3' => [
             'driver' => 's3',

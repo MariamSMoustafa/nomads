@@ -13,7 +13,7 @@ class Payment extends Model
     use Notifiable;
 
     protected $fillable = [
-        'cardnum', 'cvv', 'expiration','card_user_name'
+        'cardnum', 'cvv', 'expiration','card_user_name','traveller_id'
     ];
 
     /**
@@ -33,4 +33,5 @@ class Payment extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

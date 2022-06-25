@@ -15,16 +15,19 @@ class CreateCompanyReviewsTable extends Migration
     {
         //
         Schema::create('company-reviews', function (Blueprint $table) {
-            $table->text('Review');
+            $table->id();
+            $table->text('review');
+            $table->float('rating');
             $table->timestamps();
-            $table->foreignId('user_id')
-                ->constrained("users")
+            $table->foreignId('traveller_id')
+                ->constrained("travellers")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('company_id')
                 ->constrained("companies")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
         });
     }
 

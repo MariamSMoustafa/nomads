@@ -48,10 +48,25 @@ class signupController extends Controller
             'rating'=>$request->rating,
 
         ]);
-
-
         return redirect('register2');
     }
+
+    protected function gui(Request $request){
+
+        $guide=   Guide::create([
+
+            'birthday' => $request['birthday'],
+            'image' => $request['image'],
+            'gender'=> $request['gender'],
+            'user_id'=> $request['user_id'],
+            'price'=> $request['price'],
+            'city'=> $request['city'],
+
+        ]);
+        return response()->json($guide,201);
+    }
+
+
     /*protected function GuideRegister(GuideRegister $request){
 
         $guide=   Guide::create([

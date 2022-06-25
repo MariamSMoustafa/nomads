@@ -7,79 +7,59 @@ use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+
+    public function addTrip()
     {
-        //
+        return view('auth.Trip.addTrip');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function storeTrip(Request $request)
     {
-        //
+        $file_extension2 = $request ->photos -> getClientOriginalExtension();
+        $file_name2 = time().'.'.$file_extension2;
+        $path2 = 'image/Trip';
+        $request -> photos -> move($path2,$file_name2);
+
+        Trip::create([
+            'tripname' => $request->tripname,
+            'description' => $request -> description,
+            'guideLines' => $request -> guideLines,
+            'from' => $request -> from,
+            'to' => $request -> to,
+            'duration' => $request -> duration,
+            'departureTime' => $request -> departureTime,
+            'departurePlace' => $request -> departurePlace,
+            'price' => $request -> price,
+            'nofpeople' => $request -> nofpeople,
+            'photos' => $file_name2,
+
+        ]);
+
+        return redirect('home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    protected function tri(Request $request){
+
+        $trip=   Trip::create([
+
+            'tripname' => $request['tripname'],
+            'description' => $request['description'],
+            'guideLines'=> $request['guideLines'],
+            'nofpeople'=> $request['nofpeople'],
+            'from'=> $request['from'],
+            'to'=> $request['to'],
+            'duration'=> $request['duration'],
+            'departureTime'=> $request['departureTime'],
+            'departurePlace'=> $request['departurePlace'],
+            'price'=> $request['price'],
+            'photos'=> $request['photos'],
+            'company_id'=>$request['company_id'],
+            'city_id'=>$request['city_id']
+
+        ]);
+        return response()->json($trip,201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\trip  $trip
-     * @return \Illuminate\Http\Response
-     */
-    public function show(trip $trip)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\trip  $trip
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(trip $trip)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\trip  $trip
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, trip $trip)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\trip  $trip
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(trip $trip)
-    {
-        //
-    }
 }

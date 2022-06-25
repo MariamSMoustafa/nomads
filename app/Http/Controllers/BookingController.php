@@ -7,79 +7,44 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function tripBooking(){
+        return view('auth.Booking.tripBooking');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function storeBookTrip(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $request->validate([
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(booking $booking)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(booking $booking)
-    {
-        //
-    }
+            'phone_num1' => 'required|string|max:11',
+            'phone_num2' => 'required|string|max:11',
+            'national_id' => 'required|string|max:14',
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, booking $booking)
-    {
-        //
-    }
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(booking $booking)
-    {
-        //
+        booking::create([
+            'national_id' => $request->national_id,
+            'phone_num1' => $request -> phone_num1,
+            'phone_num2' => $request -> phone_num2,
+            'num_of_seats' => $request -> num_of_seats,
+        ]);
+
+        return redirect('home');
+    }
+    protected function booktrip(Request $request){
+
+        $booktrip=   booking::create([
+
+            'national_id' => $request['national_id'],
+            'phone_num1' => $request['phone_num1'],
+            'phone_num2'=> $request['phone_num2'],
+            'num_of_seats'=> $request['num_of_seats'],
+            'traveller_id'=>$request['traveller_id'],
+            'trip_id'=>$request['trip_id']
+
+        ]);
+        return response()->json($booktrip,201);
     }
 }

@@ -14,7 +14,7 @@ class Company extends Model
 
     protected $table = "companies";
     protected $fillable = [
-     'address','aboutus','logo','rating',
+     'address','aboutus','logo','rating','user_id'
     ];
     protected $casts = [
         'email_verified_at' => 'datetime',

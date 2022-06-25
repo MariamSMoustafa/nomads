@@ -7,79 +7,51 @@ use Illuminate\Http\Request;
 
 class BookguideController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function guideBooking(){
+        return view('auth.BookGuide.guideBooking');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function storeBookGuide(Request $request)
     {
-        //
+
+        $request->validate([
+
+
+            'phone_num1' => 'required|string|max:11',
+            'phone_num2' => 'required|string|max:11',
+            'national_id' => 'required|string|max:14',
+
+        ]);
+
+        bookguide::create([
+            'national_id' => $request->national_id,
+            'phone_num1' => $request -> phone_num1,
+            'phone_num2' => $request -> phone_num2,
+            'from' => $request -> from,
+            'to' => $request -> to,
+            'num_of_days' => $request -> num_of_days,
+            'message' => $request -> message,
+        ]);
+
+        return redirect('home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    protected function bookgui(Request $request){
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\bookguide  $bookguide
-     * @return \Illuminate\Http\Response
-     */
-    public function show(bookguide $bookguide)
-    {
-        //
-    }
+        $bookgui=   bookguide::create([
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\bookguide  $bookguide
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(bookguide $bookguide)
-    {
-        //
-    }
+            'national_id' => $request['national_id'],
+            'phone_num1' => $request['phone_num1'],
+            'phone_num2'=> $request['phone_num2'],
+            'from'=> $request['from'],
+            'to'=> $request['to'],
+            'num_of_days'=> $request['num_of_days'],
+            'message'=> $request['message'],
+            'guide_id'=> $request['guide_id'],
+            'travellers_id'=> $request['travellers_id'],
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\bookguide  $bookguide
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, bookguide $bookguide)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\bookguide  $bookguide
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(bookguide $bookguide)
-    {
-        //
+        ]);
+        return response()->json($bookgui,201);
     }
 }

@@ -31,7 +31,6 @@ class Registeration extends FormRequest
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required', 'string', 'min:11', 'unique:users'],
 
-
         ];
     }
 }

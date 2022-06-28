@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGuidesTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateGuidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('guides', function (Blueprint $table) {
-            $table->id('Guide_ID');
-            $table->date('birthday');
-            $table->decimal('price');
-            $table->string('gender');
-            $table->string('image');
-            $table->string('about');
-            $table->foreignId('user_id')
-                ->constrained("users")
+        Schema::create('languages', function (Blueprint $table) {
+            $table->id();
+            $table->string('language_name');
+            $table->foreignId('guide_id')
+                ->constrained("guides")
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
@@ -35,6 +31,6 @@ class CreateGuidesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guides');
+        Schema::dropIfExists('languages');
     }
 }

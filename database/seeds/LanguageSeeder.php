@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class certificatelanguageSeeder extends Seeder
+class LanguageSeeder extends Seeder
 {
     /**
      * Run the database seeds.

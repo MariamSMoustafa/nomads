@@ -60,7 +60,7 @@ class signupController extends Controller
             'gender'=> $request['gender'],
             'user_id'=> $request['user_id'],
             'price'=> $request['price'],
-            'city'=> $request['city'],
+            'about'=>$request['about']
 
         ]);
         return response()->json($guide,201);

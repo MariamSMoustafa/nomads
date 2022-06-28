@@ -19,7 +19,7 @@ class Guide extends Model
      * @var array
      */
     protected $fillable = [
-     'gender','birthday','city','price','image','rating','user_id'
+     'gender','birthday','price','image','rating','user_id',"about"
     ];
 
     /**

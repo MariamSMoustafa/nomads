@@ -89,6 +89,7 @@ class RegisterController extends Controller
              'password' => Hash::make($request['password']),
              'phone'=> $request['phone'],
                   'type'=>$request['type'],
+                  'city'=>$request['city']
 
 
 ]);
